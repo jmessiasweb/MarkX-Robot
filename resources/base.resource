@@ -2,6 +2,7 @@
 Documentation        Tudo deve começar nesse arquivo
 
 Library      AppiumLibrary
+Library      libs/mongo.py
 
 Resource     screens/login.resource
 Resource     screens/tasks.resource

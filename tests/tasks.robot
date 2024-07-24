@@ -9,10 +9,12 @@ Test Teardown    Finish session
 *** Test Cases ***
 Deve poder cadastrar uma nova tarefa
 
-    Do Login
-    Create a new task    Estudar XPath
+    ${task}    Set Variable    Estudar Python
+    Removendo task from database       ${task}
 
-    Sleep  5
+    Do Login
+    Create a new task                 ${task}
+    Should have task                  ${task} 
 
     
 
