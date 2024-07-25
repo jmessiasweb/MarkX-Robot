@@ -9,10 +9,35 @@ Test Teardown    Finish session
 *** Test Cases ***
 Deve poder cadastrar uma nova tarefa
 
+    ${task}    Set Variable    Estudar Python
+    Removendo task from database       ${task}
+
     Do Login
-    Create a new task    Estudar XPath
+    Create a new task                  ${task}
+    Should have task                   ${task} 
 
-    Sleep  5
+Deve poder remover uma tarefa indesejada 
+    [Tags]    remove
 
-    
+    ${task}    Set Variable      Comprar refrigerante
+    Removendo task from database       ${task}
 
+    Do Login
+    Create a new task                   ${task}
+    Should have task                    ${task}
+
+    Remove task by name                 ${task}
+    Wait Until Page Does Not Contain    ${task}
+
+Deve poder concluir uma tarefa  
+    [Tags]    done
+
+    ${task}    Set Variable            Estudar XPath
+    Removendo task from database       ${task}
+
+    Do Login
+    Create a new task                   ${task}
+    Should have task                    ${task}
+
+    Finish task                         ${task}
+    task should be done                 ${task}    
